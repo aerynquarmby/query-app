@@ -8,7 +8,7 @@ export default function Home() {
   const [inputValue, setInputValue] = useState(''); // state to hold input value
 
   const handleRedirect = () => {
-    window.location.href = `https://venerable-melba-4bcccf.netlify.app/?redirect-url=${encodeURIComponent(
+    window.location.href = `https://scantopay.vercel.app/?redirect-url=${encodeURIComponent(
       inputValue // use inputValue as the redirect URL
     )}`;
   }
