@@ -1,0 +1,56 @@
+.button {
+    background-color: #808380;
+    border: none;
+    color: white;
+    padding: 10px 20px; /* Adjust the padding as per your preference */
+    text-align: center;
+    text-decoration: none;
+    display: block; /* Change display to "block" */
+    margin: 10px auto; /* Center the button horizontally */
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+  }
+  
+
+  .imageContainer {
+    margin-bottom: 80px; /* Adjust the margin value as per your preference */
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .footer {
+    margin-top: auto;
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
+  
+  .paragraph {
+    margin-top: 10px;
+  }
+  
+  .productHeader {
+    font-weight: bold;
+  }
+
+  /* new style for input */
+.input {
+    padding: 10px;
+    width: 60%; /* you can adjust this as per your preference */
+    margin: 10px auto; /* to center the input field */
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: black;
+  }

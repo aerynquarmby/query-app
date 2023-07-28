@@ -1,0 +1,45 @@
+.amountHeading {
+    display: flex;
+    align-items: center;
+  }
+  
+  .amountInput {
+    margin-left: 5px;
+    padding: 2px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: black;
+  }
+  
+  .imageContainer {
+    margin-bottom: 80px; /* Adjust the margin value as per your preference */
+  }
+
+  .amountHeading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .amountInput {
+    margin-left: 10px; /* Add margin as per your preference */
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .footer {
+    margin-top: auto;
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
+  
+  .productHeader {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
