@@ -42,10 +42,15 @@ export default function XionApi({ address, amount }) {
         }
       );
 
-      if (response.data.status === "successful" && response.data.orderCode && response.data.transactionHash) {
+      if (response.data.status === "successful" && response.data.orderCode) {
         console.log("Payment successful:", response.data);
-        showSuccessPopup(response.data.transactionHash, response.data.orderCode);
-        setPaymentSuccessful(true);
+        if (response.data.transactionHash) {
+          showSuccessPopup(response.data.transactionHash, response.data.orderCode);
+          setPaymentSuccessful(true);
+        } else {
+          console.warn("Payment successful, but no transaction hash found:", response.data);
+          alert("Payment successful, but no transaction hash found. Please check your wallet or contact support.");
+        }
       } else {
         console.error("Payment error:", response.data);
         alert("Payment failed. Please try again.");
@@ -62,36 +67,35 @@ export default function XionApi({ address, amount }) {
     // Create a pop-up element
     const popup = document.createElement("div");
     popup.className = styles.popup;
-  
+
     // Create content for the pop-up
     const content = document.createElement("div");
     content.className = styles.popupContent;
-  
+
     const heading = document.createElement("h2");
     heading.innerText = "Transaction Receipt";
-  
+
     const orderCodeText = document.createElement("p");
     orderCodeText.innerText = `Order Code: ${orderCode}`;
-  
+
     const txHashText = document.createElement("p");
     txHashText.innerHTML = `Transaction Hash: <a href="https://polygonscan.com/tx/${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a>`;
-  
+
     // Append content to the pop-up element
     content.appendChild(heading);
     content.appendChild(orderCodeText);
     content.appendChild(txHashText);
     popup.appendChild(content);
-  
+
     // Add the pop-up element to the document body
     document.body.appendChild(popup);
-  
+
     // Set a timeout to remove the pop-up after 10 seconds
     setTimeout(() => {
       document.body.removeChild(popup);
     }, 10000);
   };
   
-
   return (
     <div>
       <button className={`${styles.button} ${paymentSuccessful ? styles.success : ""}`} onClick={handlePayClick} disabled={loading}>
