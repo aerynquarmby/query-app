@@ -62,26 +62,27 @@ export default function XionApi({ amount }) {
     }
   };
 
-  const showSuccessPopup = (txHash, orderCode) => {
-    const popup = document.createElement("div");
-    popup.className = styles.popup;
-    const content = document.createElement("div");
-    content.className = styles.popupContent;
-    const heading = document.createElement("h2");
-    heading.innerText = "Transaction Receipt";
-    const orderCodeText = document.createElement("p");
-    orderCodeText.innerText = `Order Code: ${orderCode}`;
-    const txHashText = document.createElement("p");
-    txHashText.innerHTML = `Transaction Hash: <a href="https://polygonscan.com/tx/${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a>`;
-    content.appendChild(heading);
-    content.appendChild(orderCodeText);
-    content.appendChild(txHashText);
-    popup.appendChild(content);
-    document.body.appendChild(popup);
-    setTimeout(() => {
-      document.body.removeChild(popup);
-    }, 10000);
-  };
+ const showSuccessPopup = (txHash, orderCode) => {
+  const popup = document.createElement("div");
+  popup.className = styles.popup;
+  const content = document.createElement("div");
+  content.className = styles.popupContent;
+  const heading = document.createElement("h2");
+  heading.innerText = "Transaction Receipt";
+  const orderCodeText = document.createElement("p");
+  orderCodeText.innerText = `Order Code: ${orderCode}`;
+  const txHashText = document.createElement("p");
+  txHashText.innerHTML = `Transaction Hash: <a href="https://polygonscan.com/tx/${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a>`;
+  content.appendChild(heading);
+  content.appendChild(orderCodeText);
+  content.appendChild(txHashText);
+  popup.appendChild(content);
+  document.body.appendChild(popup);
+  setTimeout(() => {
+    document.body.removeChild(popup);
+  }, 10000);
+};
+
 
 
   return (
