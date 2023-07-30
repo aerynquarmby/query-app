@@ -83,6 +83,7 @@ export default function XionApi({ amount }) {
     }, 10000);
   };
 
+
   return (
     <div>
       <button className={`${styles.button} ${paymentSuccessful ? styles.success : ""}`} onClick={handlePayClick} disabled={loading}>
