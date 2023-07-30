@@ -21,47 +21,50 @@ export default function XionApi({ address, amount }) {
     return () => clearTimeout(timeoutId);
   }, [paymentSuccessful]);
 
-  const handlePayClick = async () => {
-    try {
-      setLoading(true);
+ const handlePayClick = async () => {
+  try {
+    setLoading(true);
 
-      const response = await axios.post(
-        apiUrl,
-        {
-          productName: "ScantoPay-Demo",
-          amount: parseFloat(amount),
-          currency: "usdt",
-          buyerAddress: address,
+    const response = await axios.post(
+      apiUrl,
+      {
+        productName: "ScantoPay-Demo",
+        amount: parseFloat(amount),
+        currency: "usdt",
+        buyerAddress: address,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+          Accept: "application/json",
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`,
-            Accept: "application/json",
-          },
-        }
-      );
-
-      if (response.data.status === "successful" && response.data.orderCode) {
-        console.log("Payment successful:", response.data);
-        if (response.data.transactionHash) {
-          showSuccessPopup(response.data.transactionHash, response.data.orderCode);
-          setPaymentSuccessful(true);
-        } else {
-          console.warn("Payment successful, but no transaction hash found:", response.data);
-          alert("Payment successful, but no transaction hash found. Please check your wallet or contact support.");
-        }
-      } else {
-        console.error("Payment error:", response.data);
-        alert("Payment failed. Please try again.");
       }
-    } catch (error) {
-      console.error("Error processing payment:", error);
-      alert("Error processing payment. Please try again.");
-    } finally {
-      setLoading(false);
+    );
+
+    const { status, orderCode, transactionHash } = response.data;
+
+    if (status === "successful" || status === "pending") {
+      console.log("Payment successful:", response.data);
+      if (transactionHash) {
+        showSuccessPopup(transactionHash, orderCode);
+        setPaymentSuccessful(true);
+      } else {
+        console.warn("Payment successful, but no transaction hash found:", response.data);
+        alert("Payment successful, but no transaction hash found. Please check your wallet or contact support.");
+      }
+    } else {
+      console.error("Payment error:", response.data);
+      alert("Payment failed. Please try again.");
     }
-  };
+  } catch (error) {
+    console.error("Error processing payment:", error);
+    alert("Error processing payment. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const showSuccessPopup = (txHash, orderCode) => {
     // Create a pop-up element
