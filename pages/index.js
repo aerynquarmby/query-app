@@ -7,10 +7,10 @@ export default function Home() {
   const router = useRouter();
   const [inputValue, setInputValue] = useState(''); // state to hold input value
 
-  const handleRedirect = () => {
-    window.location.href = `https://scantopay.vercel.app/?redirect-url=${encodeURIComponent(
-      inputValue // use inputValue as the redirect URL
-    )}`;
+ const handleRedirect = () => {
+    const currentUrl = window.location.href; // Get the current URL
+    const redirectTo = `${inputValue}?redirect-url=${encodeURIComponent(currentUrl)}`;
+    window.location.href = redirectTo;
   }
 
   return (
